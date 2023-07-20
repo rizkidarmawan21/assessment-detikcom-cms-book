@@ -21,6 +21,12 @@ class GetSystemSettingMenuAction
                 'icon' =>  'VRole',
                 'can' => 'view_systems_role_management'
             ],
+            [
+                'text' => 'User Management',
+                'url' => route('settings.systems.user.index'),
+                'icon' =>  'VRole',
+                'can' => 'view_systems_user_management'
+            ],
         ];
 
         $builderSidebar = new Builder([

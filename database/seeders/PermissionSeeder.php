@@ -33,6 +33,30 @@ class PermissionSeeder extends Seeder
 
             // Setting Systems
             [
+                'group' => 'audit_trails',
+                'sub_group' => [
+                    [
+                        'name' => 'admin_logs',
+                        'permission' => [
+                            [
+                                'name' => 'view_admin_logs',
+                                'label' => 'View Admin Logs',
+                            ]
+                        ]
+                    ],
+                    [
+                        'name' => 'api_logs',
+                        'permission' => [
+                            [
+                                'name' => 'view_api_logs',
+                                'label' => 'View Api Logs',
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            // Setting Systems
+            [
                 'group' => 'setting_systems',
                 'sub_group' => [
                     [
@@ -41,6 +65,15 @@ class PermissionSeeder extends Seeder
                             [
                                 'name' => 'view_systems_role_management',
                                 'label' => 'View Role Management',
+                            ]
+                        ]
+                    ],
+                    [
+                        'name' => 'user_management',
+                        'permission' => [
+                            [
+                                'name' => 'view_systems_user_management',
+                                'label' => 'View User Management',
                             ]
                         ]
                     ]
