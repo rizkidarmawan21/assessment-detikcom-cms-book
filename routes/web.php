@@ -30,7 +30,7 @@ Route::prefix('admin')->group(function () {
             Route::post('logout', 'logout')->name('logout');
         });
     });
-    
+
     Route::controller(ResetPasswordController::class)->group(function () {
         Route::get('password/reset/{token}', 'showResetForm')->name('showResetForm');
         Route::post('password/reset', 'reset')->name('resetpassword');
@@ -46,7 +46,7 @@ Route::prefix('admin')->group(function () {
             return redirect(route('dashboard.index'));
         });
 
-        Route::controller(DashboardController::class)->group(function () {
+        Route::controller(DashboardController::class)->middleware('can:view_general_dashboard')->group(function () {
             Route::get('/dashboard', 'index')->name('dashboard.index');
         });
 

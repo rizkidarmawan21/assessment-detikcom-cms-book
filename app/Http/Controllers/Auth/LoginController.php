@@ -97,6 +97,7 @@ class LoginController extends Controller
 
         if ($response = $this->loggedOut($request)) {
             return $response;
+            // dd($response);
         }
 
         return response()->json([

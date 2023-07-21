@@ -15,7 +15,7 @@ use App\Http\Controllers\Settings\System\UserManagementController;
 
 Route::prefix('settings')->name('settings.')->group(function () {
     Route::controller(SystemController::class)->prefix('systems')->name('systems.')->group(function () {
-        Route::prefix('role')->name('role.')->group(function () {
+        Route::prefix('role')->name('role.')->middleware('can:view_systems_role_management')->group(function () {
             Route::get('/', 'roleSettingIndex')->name('index');
             Route::controller(RoleManagementController::class)->group(function () {
                 Route::get('get-data', 'getRoleList')->name('getdata');
@@ -28,7 +28,7 @@ Route::prefix('settings')->name('settings.')->group(function () {
         });
 
         Route::prefix('user')->name('user.')->group(function () {
-            Route::get('/', 'userSettingIndex')->name('index');
+            Route::get('/', 'userSettingIndex')->middleware('can:view_systems_user_management')->name('index');
             Route::controller(UserManagementController::class)->group(function () {
                 Route::get('get-data', 'getData')->name('getdata');
                 Route::post('create', 'createData')->name('create');
