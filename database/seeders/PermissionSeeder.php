@@ -31,7 +31,23 @@ class PermissionSeeder extends Seeder
                 ]
             ],
 
-            // Setting Systems
+            // Book Management
+            [
+                'group' => 'book_management',
+                'sub_group' => [
+                    [
+                        'name' => 'book',
+                        'permission' => [
+                            [
+                                'name' => 'view_book_management',
+                                'label' => 'View Book Management',
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+
+            // Audit Trails
             [
                 'group' => 'audit_trails',
                 'sub_group' => [
