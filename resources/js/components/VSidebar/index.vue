@@ -86,7 +86,7 @@ watch(sidebarExpanded, () => {
                     <Link :class="sidebarExpanded || sidebarOpen ?  'block' : 'hidden'" class="pl-2 transition-all duration-200" href="/">
                         <div class="flex justify-start w-full">
                             <img class="w-8 h-8 rounded-full" src="/img/laravel-icon.svg" alt="Company Logo" />
-                            <div class="ml-2 my-auto text-white font-bold text-lg">Boilerplate</div>
+                            <div class="ml-2 my-auto text-white font-bold text-lg">Bookstore</div>
                         </div>
                     </Link>
                     <div @click.prevent="sidebarExpanded = !sidebarExpanded" :class="!sidebarExpanded ? 'mx-1' : ''"

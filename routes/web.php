@@ -21,7 +21,7 @@ Route::get('/', function () {
     return redirect(route('dashboard.index'));
 });
 
-Route::prefix('admin')->group(function () {
+Route::prefix('dashboard')->group(function () {
     Route::controller(LoginController::class)->group(function () {
         Route::get('login', 'showLoginForm')->name('login');
         Route::get('success-reset', 'showSuccessResetPassword')->name('successreset');
@@ -47,7 +47,7 @@ Route::prefix('admin')->group(function () {
         });
 
         Route::controller(DashboardController::class)->middleware('can:view_general_dashboard')->group(function () {
-            Route::get('/dashboard', 'index')->name('dashboard.index');
+            Route::get('/', 'index')->name('dashboard.index');
         });
 
         require __DIR__ . '/admin/settings.php';
