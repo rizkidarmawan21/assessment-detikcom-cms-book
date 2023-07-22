@@ -17,12 +17,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('author_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('title');
-            $table->string('slug');
             $table->foreignId('category_id')->constrained('book_categories')->cascadeOnUpdate()->cascadeOnDelete();
             $table->text('description');
             $table->integer('number_of_pages');
             $table->string('cover');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

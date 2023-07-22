@@ -9,6 +9,7 @@ Route::prefix('books')->name('books.')->group(function () {
 
         Route::controller(BookManagementController::class)->group(function () {
             Route::get('get-data', 'getData')->name('get-data');
+            Route::post('create-data', 'createData')->name('create-data');
         });
     });
 });

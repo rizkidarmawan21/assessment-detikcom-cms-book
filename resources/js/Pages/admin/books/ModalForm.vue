@@ -61,8 +61,13 @@ const DigitalFileSelected = (evt) => {
 
 
 const submit = async () => {
-    props.updateAction ? update() : create();
-};
+    const fd = new FormData();
+    Object.keys(form.value).forEach(key => {
+        fd.append(key, form.value[key]);
+    })
+
+    props.updateAction ? update(fd) : create(fd)
+}
 
 const update = async () => {
     isLoading.value = true;
@@ -118,10 +123,11 @@ const update = async () => {
         .finally(() => (isLoading.value = false));
 };
 
-const create = async () => {
+const create = async (fd) => {
     isLoading.value = true;
+    console.log(fd)
     axios
-        .post(route("settings.systems.user.create"), form.value)
+        .post(route("books.create-data"), fd)
         .then((res) => {
             emit("close");
             emit("successSubmit");
