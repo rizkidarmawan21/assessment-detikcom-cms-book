@@ -21,7 +21,7 @@ import VEmpty from "@/components/src/icons/VEmpty.vue";
 import VButton from "@/components/VButton/index.vue";
 import VSelect from "@/components/VSelect/index.vue";
 import VDetail from "@/components/src/icons/VDetail.vue";
-// import VModalForm from './ModalForm.vue';
+import VModalForm from './ModalForm.vue';
 // import VFilter from './Filter.vue';
 
 const query = ref([]);
@@ -46,6 +46,7 @@ const pagination = ref({
     total_pages: 1,
 });
 const itemSelected = ref({});
+const updateAction = ref(false);
 const openModalForm = ref(false);
 const heads = ["No", "Cover", "Title", "Category", "Number of Page", ""];
 const isLoading = ref(true);
@@ -57,7 +58,7 @@ const props = defineProps({
 
 const getData = debounce(async (page) => {
     axios
-        .get(route("audits.admin-logs.getdata"), {
+        .get(route("books.get-data"), {
             params: {
                 page: page,
                 search: searchFilter.value,
@@ -92,6 +93,12 @@ const previousPaginate = () => {
     getData(pagination.value.current_page);
 };
 
+const handleAddModalForm = () => {
+    updateAction.value = false;
+    openModalForm.value = true;
+};
+
+
 const searchHandle = (search) => {
     searchFilter.value = search;
     isLoading.value = true;
@@ -101,6 +108,11 @@ const searchHandle = (search) => {
 const closeModalForm = () => {
     itemSelected.value = ref({});
     openModalForm.value = false;
+};
+
+const successSubmit = () => {
+    isLoading.value = true;
+    getData(pagination.value.current_page);
 };
 
 onMounted(() => {
@@ -132,6 +144,12 @@ onMounted(() => {
             >
                 <!-- Filter -->
                 <!-- <VFilter @search="searchHandle" :additional="additional"/> -->
+                <VButton
+                    label="Add Book"
+                    type="primary"
+                    @click="handleAddModalForm"
+                    class="mt-auto"
+                />
             </div>
         </header>
 
@@ -157,20 +175,12 @@ onMounted(() => {
                 </td>
             </tr>
             <tr v-for="(data, index) in query" :key="index" v-else>
-                <td class="px-4 whitespace-nowrap h-16">
-                    1
-                </td>
-                <td class="px-4 whitespace-nowrap h-16">
-                    Covernya
-                </td>
+                <td class="px-4 whitespace-nowrap h-16">1</td>
+                <td class="px-4 whitespace-nowrap h-16">Covernya</td>
+                <td class="px-4 whitespace-nowrap h-16 capitalize">Judul</td>
+                <td class="px-4 whitespace-nowrap h-16 capitalize">Ketgori</td>
                 <td class="px-4 whitespace-nowrap h-16 capitalize">
-                    Judul
-                </td>
-                <td class="px-4 whitespace-nowrap h-16 capitalize">
-                   Ketgori
-                </td>
-                <td class="px-4 whitespace-nowrap h-16 capitalize">
-                   Julah Halaman
+                    Julah Halaman
                 </td>
                 <td class="px-4 whitespace-nowrap h-16 text-right">
                     <VDropdownEditMenu
@@ -203,5 +213,12 @@ onMounted(() => {
             />
         </div>
     </div>
-    <!-- <VModalForm :data="itemSelected" :open-dialog="openModalForm" @close="closeModalForm" /> -->
+    <VModalForm
+        :data="itemSelected"
+        :update-action="updateAction"
+        :open-dialog="openModalForm"
+        @close="closeModalForm"
+        @successSubmit="successSubmit"
+        :additional="additional"
+    />
 </template>
