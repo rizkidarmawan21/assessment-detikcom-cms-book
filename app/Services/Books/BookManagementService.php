@@ -11,6 +11,7 @@ class BookManagementService
     public function getData($request)
     {
         $search = $request->search;
+        $filter_category = $request->filter_category;
 
         $query = Book::with('category');
 
@@ -24,6 +25,10 @@ class BookManagementService
 
         $query->when(auth()->user()->hasRole('user'), function ($q) {
             $q->where('author_id', auth()->id());
+        });
+
+        $query->when(request('filter_category', false), function ($q) use ($filter_category) {
+            $q->where('category_id', $filter_category);
         });
 
         // dd($query->get());

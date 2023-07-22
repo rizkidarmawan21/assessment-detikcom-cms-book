@@ -2,14 +2,28 @@
 import { ref } from "vue"
 import { any } from "vue-types";
 import VInput from '@/components/VInput/index.vue';
+import VSelect from '@/components/VSelect/index.vue';
+import VFilter from '@/components/VFilter/index.vue';
 
 const searchValue = ref("")
+const filter = ref({})
+const filterCategorySelect = ref()
 
 const props = defineProps({
     additional: any()
 })
 const search = () => {
     emit('search', searchValue.value)
+}
+
+const applyFilter = () => {
+    emit('apply', filter.value)
+}
+
+const clearFilter = () => {
+    filter.value = ref({})
+    filterCategorySelect.value.clearSelected()
+    emit('clear', filter.value)
 }
 
 const emit = defineEmits(['search'])
@@ -30,4 +44,11 @@ const emit = defineEmits(['search'])
             </span>
         </template>
     </VInput>
+    <VFilter align="right" @apply="applyFilter" @clear="clearFilter">
+        <div class="pt-1.5 pb-4 px-4">
+            <div class="text-xs font-semibold text-slate-400 uppercase mb-2">Filter By Category</div>
+            <VSelect placeholder="Category" v-model="filter.category_id" :options="additional.book_category_list"
+                ref="filterCategorySelect" />
+        </div>
+    </VFilter>
 </template>

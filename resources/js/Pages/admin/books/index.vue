@@ -21,7 +21,7 @@ import VEmpty from "@/components/src/icons/VEmpty.vue";
 import VButton from "@/components/VButton/index.vue";
 import VAlert from "@/components/VAlert/index.vue";
 import VModalForm from "./ModalForm.vue";
-import VFilter from './Filter.vue';
+import VFilter from "./Filter.vue";
 
 const userRole = computed(() => usePage().props.value.admin_role);
 const query = ref([]);
@@ -30,7 +30,7 @@ const breadcrumb = [
     {
         name: "Dashboard",
         active: false,
-        to: route("dashboard.index"), 
+        to: route("dashboard.index"),
     },
     {
         name: "Book Management",
@@ -72,6 +72,7 @@ if (userRole.value == "super admin") {
     heads.splice(3, 0, "Owner");
 }
 const isLoading = ref(true);
+const filter = ref({});
 
 const props = defineProps({
     title: string(),
@@ -84,6 +85,7 @@ const getData = debounce(async (page) => {
             params: {
                 page: page,
                 search: searchFilter.value,
+                filter_category: filter.value.category_id,
             },
         })
         .then((res) => {
@@ -128,6 +130,18 @@ const handleEditModal = (data) => {
 
 const searchHandle = (search) => {
     searchFilter.value = search;
+    isLoading.value = true;
+    getData(1);
+};
+
+const applyFilter = (data) => {
+    filter.value = data;
+    isLoading.value = true;
+    getData(1);
+};
+
+const clearFilter = (data) => {
+    filter.value = data;
     isLoading.value = true;
     getData(1);
 };
@@ -212,7 +226,12 @@ onMounted(() => {
                 class="mt-3 sm:mt-0 flex space-x-2 sm:justify-between justify-end"
             >
                 <!-- Filter -->
-                <VFilter @search="searchHandle" :additional="additional"/>
+                <VFilter
+                    @search="searchHandle"
+                    @apply="applyFilter"
+                    @clear="clearFilter"
+                    :additional="additional"
+                />
                 <VButton
                     label="Add Book"
                     type="primary"
@@ -246,7 +265,11 @@ onMounted(() => {
             <tr v-for="(data, index) in query" :key="index" v-else>
                 <td class="p-4 whitespace-nowrap h-16">{{ index + 1 }}</td>
                 <td class="p-4 whitespace-nowrap h-16">
-                    <img :src="data.path + data.cover_file" class="h-20" alt="" />
+                    <img
+                        :src="data.path + data.cover_file"
+                        class="h-20"
+                        alt=""
+                    />
                 </td>
                 <td class="p-4 whitespace-nowrap h-16 capitalize">
                     <a
