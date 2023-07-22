@@ -21,7 +21,7 @@ import VEmpty from "@/components/src/icons/VEmpty.vue";
 import VButton from "@/components/VButton/index.vue";
 import VAlert from "@/components/VAlert/index.vue";
 import VModalForm from "./ModalForm.vue";
-// import VFilter from './Filter.vue';
+import VFilter from './Filter.vue';
 
 const userRole = computed(() => usePage().props.value.admin_role);
 const query = ref([]);
@@ -212,7 +212,7 @@ onMounted(() => {
                 class="mt-3 sm:mt-0 flex space-x-2 sm:justify-between justify-end"
             >
                 <!-- Filter -->
-                <!-- <VFilter @search="searchHandle" :additional="additional"/> -->
+                <VFilter @search="searchHandle" :additional="additional"/>
                 <VButton
                     label="Add Book"
                     type="primary"
