@@ -120,6 +120,12 @@ const handleAddModalForm = () => {
     openModalForm.value = true;
 };
 
+const handleEditModal = (data) => {
+    updateAction.value = true;
+    itemSelected.value = data;
+    openModalForm.value = true;
+};
+
 const searchHandle = (search) => {
     searchFilter.value = search;
     isLoading.value = true;
@@ -240,12 +246,12 @@ onMounted(() => {
             <tr v-for="(data, index) in query" :key="index" v-else>
                 <td class="p-4 whitespace-nowrap h-16">{{ index + 1 }}</td>
                 <td class="p-4 whitespace-nowrap h-16">
-                    <img :src="data.cover_file" class="h-20" alt="" />
+                    <img :src="data.path + data.cover_file" class="h-20" alt="" />
                 </td>
                 <td class="p-4 whitespace-nowrap h-16 capitalize">
                     <a
-                        v-if="data.file"
-                        :href="data.pdf_file"
+                        v-if="data.pdf_file"
+                        :href="data.path + data.pdf_file"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="bg-sky-400 text-white py-1 px-2 rounded-xl hover:bg-sky-500"

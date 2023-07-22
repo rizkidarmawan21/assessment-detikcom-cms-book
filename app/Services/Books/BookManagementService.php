@@ -59,6 +59,37 @@ class BookManagementService
 
     public function updateData($request, $id)
     {
+        $book = Book::findOrFail($id);
+
+        $data = $request->only(['title', 'category_id', 'description', 'number_of_pages', 'cover']);
+        
+        if($book->author_id != auth()->id()) {
+            throw new Exception('You are not authorized to update this book');
+        }
+
+        if($request->hasFile('cover'))
+        {
+            // delete old cover
+            Storage::delete($book->cover);
+
+            // store new cover
+            $data['cover'] = $request->file('cover')->store('book/covers', 'public');
+        }
+
+        if($request->hasFile('file'))
+        {
+            // delete old file
+            Storage::delete($book->file);
+
+            // store new file
+            $data['file'] = $request->file('file')->store('book/files', 'public');
+        }
+
+        // update book
+        $book->update($data);
+
+        // return book
+        return $book;
     }
 
     public function deleteData($id)

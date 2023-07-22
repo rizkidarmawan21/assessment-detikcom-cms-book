@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Book;
 
 use App\Http\Controllers\AdminBaseController;
 use App\Http\Requests\Books\CreateBookRequest;
+use App\Http\Requests\Books\UpdateBookRequest;
 use App\Http\Resources\Books\BookListResource;
 use App\Http\Resources\Books\SubmitBookResource;
 use App\Services\Books\BookManagementService;
@@ -47,6 +48,18 @@ class BookManagementController extends AdminBaseController
             $data = $this->bookManagementService->deleteData($id);
 
             $result = new SubmitBookResource($data, 'Book deleted successfully');
+            return $this->respond($result);
+        } catch (Exception $e) {
+            return $this->exceptionError($e->getMessage());
+        }
+    }
+
+    public function updateData(UpdateBookRequest $request, $id)
+    {
+        try {
+            $data = $this->bookManagementService->updateData($request, $id);
+
+            $result = new SubmitBookResource($data, 'Book updated successfully');
             return $this->respond($result);
         } catch (Exception $e) {
             return $this->exceptionError($e->getMessage());

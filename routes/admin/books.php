@@ -10,6 +10,7 @@ Route::prefix('books')->name('books.')->group(function () {
         Route::controller(BookManagementController::class)->group(function () {
             Route::get('get-data', 'getData')->name('get-data');
             Route::post('create-data', 'createData')->name('create-data');
+            Route::post('{id}/update-data', 'updateData')->name('update-data');
             Route::delete('{id}/delete', 'deleteData')->name('delete');
         });
     });

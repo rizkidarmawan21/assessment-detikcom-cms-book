@@ -22,11 +22,13 @@ const isLoading = ref(false);
 const formError = ref({});
 const form = ref({});
 const previewImage = ref('')
+const previewPDF = ref('')
 
 const openForm = () => {
     if (props.updateAction) {
         form.value = Object.assign(form.value, props.data);
-        previewImage.value = props.data.preview_image
+        previewImage.value = props.data.path + props.data.cover_file;
+        previewPDF.value = props.data.pdf_file;
     } else {
         form.value = ref({});
     }
@@ -73,7 +75,7 @@ const update = async () => {
     isLoading.value = true;
     axios
         .post(
-            route("settings.systems.user.update", { id: props.data.id }),
+            route("books.update-data", { id: props.data.id }),
             form.value
         )
         .then((res) => {
@@ -258,6 +260,13 @@ const create = async (fd) => {
                         Digital File (PDF)
                         <!-- <span class="text-rose-500" v-if="updateAction">*</span> -->
                     </label>
+                     <div v-if="previewPDF" class="my-4">
+                        <a
+                        :href="form.path + previewPDF"
+                        target="_blank"
+                        class=" bg-sky-400 text-white py-1 px-2 rounded-xl hover:bg-sky-500"
+                        >Preview old file</a>
+                     </div>
                     <input class="block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md"
                         type="file" id="file" accept=".pdf" @change="DigitalFileSelected">
                     <div class="text-xs mt-1" 
