@@ -13,7 +13,7 @@ class BookManagementService
         $search = $request->search;
         $filter_category = $request->filter_category;
 
-        $query = Book::with('category');
+        $query = Book::with(['category','author']);
 
         // if(auth()->user()->hasRole('user')) {
         //     $query->where('author_id', auth()->id());
@@ -35,8 +35,14 @@ class BookManagementService
         return $query->paginate(10);
     }
 
-    public function getDetail($id)
+    public function getPdfData()
     {
+        $query = Book::with(['category','author']);
+        $query->when(auth()->user()->hasRole('user'), function ($q) {
+            $q->where('author_id', auth()->id());
+        });
+
+        return $query->get();
     }
 
     public function createData($request)

@@ -12,6 +12,7 @@ Route::prefix('books')->name('books.')->group(function () {
             Route::post('create-data', 'createData')->name('create-data');
             Route::post('{id}/update-data', 'updateData')->name('update-data');
             Route::delete('{id}/delete', 'deleteData')->name('delete');
+            Route::get('download/pdf', 'exportPDF')->name('export-pdf');
         });
     });
 });

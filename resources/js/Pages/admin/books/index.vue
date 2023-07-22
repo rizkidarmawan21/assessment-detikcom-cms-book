@@ -198,6 +198,10 @@ const deleteHandle = async () => {
         });
 };
 
+const handleExportPdf = () => {
+    window.open(route('books.export-pdf'));
+}
+
 onMounted(() => {
     getData(1);
 });
@@ -236,6 +240,12 @@ onMounted(() => {
                     label="Add Book"
                     type="primary"
                     @click="handleAddModalForm"
+                    class="mt-auto"
+                />
+                <VButton
+                    label="Download PDF"
+                    type="primary"
+                    @click="handleExportPdf"
                     class="mt-auto"
                 />
             </div>
