@@ -12,6 +12,7 @@ This apps for test assesment detik.com msib batch 5. Maked with Laravel , Inerti
 
 ## Tech Stack
 - Laravel 9 (PHP 8)
+- Laravel UI
 - Inertia JS
 - Vue JS 3
 - Tailwind CSS
