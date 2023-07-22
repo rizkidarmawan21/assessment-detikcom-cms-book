@@ -22,7 +22,8 @@ This apps for test assesment detik.com msib batch 5. Maked with Laravel , Inerti
 
 ## How to use ?
 - Clone this repo
-- Run composer install
+- Run `composer install`
+- Run `yarn` or `npm install`
 - Create Database
 - Copy `.env.example` paste `.env`
 - Setup database in `.env`
@@ -30,6 +31,7 @@ This apps for test assesment detik.com msib batch 5. Maked with Laravel , Inerti
 - Run `php artisan storage:link`
 - Migrate database run `php artisan migrate --seed`
 - Running `php artisan serve`
+- Running in another terminal `yarn dev` or `npm run dev`
 
 ## Which must be required in the `.env` file
 Make sure these 3 variables are required otherwise an error will error
