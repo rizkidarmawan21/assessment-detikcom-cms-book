@@ -39,6 +39,7 @@ Make sure these 3 variables are required otherwise an error will error
 
 ## Account
 email : superadmin@boilerplate.com
+<br>
 password : rahasia123
 
 ## Preview Demo
