@@ -27,7 +27,7 @@ class GetSidebarMenuAction
                 'text' => 'Book Category',
                 'url'  => route('categories.index'),
                 'icon' => 'VDashboard',
-                'can'  => 'view_book_management'
+                'can'  => 'view_book_category_management'
             ],
             [
                 'text' => 'Audit Trails',

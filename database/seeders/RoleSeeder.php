@@ -18,12 +18,23 @@ class RoleSeeder extends Seeder
             [
                 'name' => 'super admin',
                 'is_default' => true,
-                'permissions' => ['view_general_dashboard', 'view_systems_role_management']
+                'permissions' => [
+                    'view_general_dashboard', 
+                    'view_systems_role_management',
+                    'view_book_management',
+                    'view_book_category_management',
+                    'view_admin_logs',
+                    'view_api_logs',
+                    'view_systems_user_management'
+                    ]
             ],
             [
                 'name' => 'user',
                 'is_default' => true,
-                'permissions' => []
+                'permissions' => [
+                    'view_general_dashboard',
+                    'view_book_management',
+                ]
             ]
         ];
 

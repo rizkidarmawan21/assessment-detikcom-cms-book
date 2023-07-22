@@ -47,6 +47,22 @@ class PermissionSeeder extends Seeder
                 ]
             ],
 
+            // Book Category Management
+            [
+                'group' => 'book_category_management',
+                'sub_group' => [
+                    [
+                        'name' => 'book_category',
+                        'permission' => [
+                            [
+                                'name' => 'view_book_category_management',
+                                'label' => 'View Book Category Management',
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+
             // Audit Trails
             [
                 'group' => 'audit_trails',
