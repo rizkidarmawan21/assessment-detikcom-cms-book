@@ -34,6 +34,10 @@ class BookListResource extends ResourceCollection
             'number_of_pages' => $data->number_of_pages,
             'cover' => $data->cover,
             'file' => $data->file,
+            'category' => $data->category,
+            'author' => $data->author->name,
+            'cover_file' => env('APP_URL') . '/storage/' . $data->cover,
+            'pdf_file' => env('APP_URL') . '/storage/' . $data->file,
         ];
     }
 

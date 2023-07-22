@@ -3,6 +3,8 @@
 namespace App\Services\Books;
 
 use App\Models\Book;
+use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class BookManagementService
 {
@@ -10,12 +12,21 @@ class BookManagementService
     {
         $search = $request->search;
 
-        $query = Book::query();
+        $query = Book::with('category');
+
+        // if(auth()->user()->hasRole('user')) {
+        //     $query->where('author_id', auth()->id());
+        // }
 
         $query->when(request('search', false), function ($q) use ($search) {
             $q->where('title', 'like', '%' . $search . '%');
         });
 
+        $query->when(auth()->user()->hasRole('user'), function ($q) {
+            $q->where('author_id', auth()->id());
+        });
+
+        // dd($query->get());
         return $query->paginate(10);
     }
 
@@ -52,5 +63,29 @@ class BookManagementService
 
     public function deleteData($id)
     {
+        // get book
+        $book = Book::findOrFail($id);
+
+        if($book->author_id != auth()->id()) {
+            throw new Exception('You are not authorized to delete this book');
+        }
+
+        if($book->cover)
+        {
+            // delete cover
+            Storage::delete($book->cover);
+        }
+
+        if($book->file)
+        {
+            // delete file
+            Storage::delete($book->file);
+        }
+
+        // delete book
+        $book->delete();
+
+        // return book
+        return $book;
     }
 }

@@ -10,4 +10,14 @@ class Book extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id', 'id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(BookCategory::class, 'category_id', 'id');
+    }
 }

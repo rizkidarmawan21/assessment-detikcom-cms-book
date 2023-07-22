@@ -28,9 +28,9 @@ class CreateBookRequest extends FormRequest
             'category_id' => 'required|exists:book_categories,id',
             'description' => 'required|string',
             'number_of_pages' => 'required|integer',
-            'cover' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+            'cover' => 'required|file|mimes:jpg,jpeg,png',
             // if file ready in request check file is pdf but not required
-            'file' => 'nullable|file|mimes:pdf|max:2048',
+            'file' => 'nullable|file|mimes:pdf',
 
         ];
     }

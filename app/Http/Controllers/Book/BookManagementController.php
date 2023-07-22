@@ -40,4 +40,16 @@ class BookManagementController extends AdminBaseController
             return $this->exceptionError($e->getMessage());
         }
     }
+
+    public function deleteData($id)
+    {
+        try {
+            $data = $this->bookManagementService->deleteData($id);
+
+            $result = new SubmitBookResource($data, 'Book deleted successfully');
+            return $this->respond($result);
+        } catch (Exception $e) {
+            return $this->exceptionError($e->getMessage());
+        }
+    }
 }
