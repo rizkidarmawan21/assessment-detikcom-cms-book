@@ -37,6 +37,10 @@ Make sure these 3 variables are required otherwise an error will error
 3. DASHBOARD_TIMEZONE (ex: `Asia/Jakarta`)
 
 
+## Account
+email : superadmin@boilerplate.com
+password : rahasia123
+
 ## Preview Demo
 
 <img width="1671" alt="image" src="https://github.com/rizkidarmawan21/assessment-detikcom-cms-book/assets/80609220/ac47490b-ee67-492b-9eae-650e10883cf5">
