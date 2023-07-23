@@ -41,13 +41,18 @@ Make sure these 3 variables are required otherwise an error will error
 
 
 ## Account
+### User Another Admin
+Accounts for users other than admins, you can register first or create an account via the admin dashboard. By default the three registering roles will be assigned as users
+
+### Admin
 email : superadmin@boilerplate.com
 <br>
 password : rahasia123
 
 ## Preview Demo
 
-<img width="1671" alt="image" src="https://github.com/rizkidarmawan21/assessment-detikcom-cms-book/assets/80609220/ac47490b-ee67-492b-9eae-650e10883cf5">
+<img width="1679" alt="image" src="https://github.com/rizkidarmawan21/assessment-detikcom-cms-book/assets/80609220/047d5516-64e1-4fac-ac68-16d027a7fb92">
+<img width="1679" alt="image" src="https://github.com/rizkidarmawan21/assessment-detikcom-cms-book/assets/80609220/a41aab12-c01b-422d-bacd-c890f1813a62">
 <img width="1679" alt="image" src="https://github.com/rizkidarmawan21/assessment-detikcom-cms-book/assets/80609220/d063fd42-eb8b-4b99-bae6-89e05a098c0b">
 <img width="1679" alt="image" src="https://github.com/rizkidarmawan21/assessment-detikcom-cms-book/assets/80609220/374ce317-d40d-4b52-ab11-d7474f373f8d">
 <img width="525" alt="image" src="https://github.com/rizkidarmawan21/assessment-detikcom-cms-book/assets/80609220/1be30f4c-52d3-4edc-8f8b-02916ee0aa81">
