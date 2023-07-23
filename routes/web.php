@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,11 @@ Route::prefix('dashboard')->group(function () {
         Route::middleware(['auth'])->group(function () {
             Route::post('logout', 'logout')->name('logout');
         });
+    });
+
+    Route::controller(RegisterController::class)->group(function () {
+        Route::get('register', 'showRegistrationForm')->name('register');
+        Route::post('register', 'register');
     });
 
     Route::controller(ResetPasswordController::class)->group(function () {
