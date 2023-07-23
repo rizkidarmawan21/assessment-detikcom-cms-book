@@ -49,6 +49,9 @@ email : superadmin@boilerplate.com
 <br>
 password : rahasia123
 
+## ERD
+<img width="1157" alt="image" src="https://github.com/rizkidarmawan21/assessment-detikcom-cms-book/assets/80609220/aa746981-681e-4132-8c10-7db980bb6723">
+
 ## Preview Demo
 
 <img width="1679" alt="image" src="https://github.com/rizkidarmawan21/assessment-detikcom-cms-book/assets/80609220/047d5516-64e1-4fac-ac68-16d027a7fb92">
